@@ -35,27 +35,31 @@
 						</ul>
 					</nav>
 
-				<!-- Banner -->
-					<section id="banner" class="major">
-						<video src="images/big.mp4" autoplay loop muted></video>
-						<div class="inner">
-							<header class="major">
-								<h1>Hi, my name is Saurabh </h1>
-							</header>
-							<div class="content">
-								<p>IIT Gandhinagar<br />
-								   Electrical Engineering</br> 
-								   Electrifying minds, powering possibilities, and lifting the bar higher.
-								</p>
-								<ul class="actions">
-									<li><a href="about.html" class="button next scrolly">About Myself</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-					<section>
-					</br>
-					</section>
+<!-- Banner -->
+<section id="banner" class="major">
+    <img src="images/banner.png" alt="Banner Image" id="banner-image">
+    <div class="inner">
+        <img src="images/img.jpeg" alt="Profile Image" id="profile-image">
+        <header class="major">
+            <h1>Hi, my name is Saurabh</h1>
+        </header>
+        <div class="content">
+            <p>BTech<br />
+                Electrical Engineering</br> 
+                IIT Gandhinagar</br> 
+            </p>
+            <ul class="actions">
+                <li><a href="about.html" class="button next scrolly">About Myself</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section>
+    </br>
+</section>
+
+
+
 
 				<!-- Main -->
 					<div id="main">
@@ -159,28 +163,61 @@
 					<section id="contact">
 						<div class="inner">
 							<section>
-								<form method="post" action="#">
-									<div class="fields">
+								
+									<form method="post" name="google-sheet" id="contact-form">
+									  <div class="fields">
 										<div class="field half">
-											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
+										  <label for="name">Name</label>
+										  <input type="text" name="Name" id="name" required />
 										</div>
 										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
+										  <label for="email">Email</label>
+										  <input type="email" name="Email" id="email" required />
 										</div>
 										<div class="field">
-											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="6"></textarea>
+										  <label for="message">Message</label>
+										  <textarea name="Message" id="Message" rows="6" required></textarea>
 										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
+									  </div>
+									  <ul class="actions">
+										<li><input type="submit" name="submit" value="Send Message" class="primary" /></li>
 										<li><input type="reset" value="Clear" /></li>
-									</ul>
-								</form>
+									  </ul>
+									  <div id="form-status" style="display:none; margin-top: 10px;">Sending...</div>
+									</form>
+								  
+									<script>
+									  const scriptURL = 'https://script.google.com/macros/s/AKfycbyDoXlEDsyY94KPlgfD1vxfkZTOXs5_vbkZEGiAMmWah2sxUN3Lt46fEGwd37tcm64o_g/exec'
+									  const form = document.getElementById('contact-form');
+									  const statusDiv = document.getElementById('form-status');
+								  
+									  form.addEventListener('submit', e => {
+										e.preventDefault();
+										
+										// Simple form validation
+										if (!form.checkValidity()) {
+										  form.reportValidity();
+										  return;
+										}
+								  
+										statusDiv.style.display = 'block';
+								  
+										fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+										  .then(response => {
+											alert("Thanks for Contacting us..! We Will Contact You Soon...");
+											form.reset();
+											statusDiv.style.display = 'none';
+										  })
+										  .catch(error => {
+											console.error('Error!', error.message);
+											statusDiv.style.display = 'none';
+										  });
+									  });
+									</script>
+								  </section>
+								  
 							</section>
-							<section class="split">
+							<!-- <section class="split">
 								<section class="split">
 									<section>
 										<div class="contact-method">
@@ -189,7 +226,8 @@
 										
 											<a href="mailto:kumarsaurabh@gmail.com?subject=Email%20Subject&body=Email%20Content">kumarsaurabh@iitgn.ac.in</a>
 										</div>
-									</section>
+										
+									</section> -->
 								<!-- <section>
 									<div class="contact-method">
 										<span class="icon solid alt fa-phone"></span>
@@ -197,6 +235,7 @@
 										<span>(000) 000-0000 x12387</span>
 									</div>
 								</section> -->
+							</br>
 								<section>
 									<footer id="footer">
 										<div class="inner">
@@ -220,8 +259,8 @@
 												<li><a href="https://www.linkedin.com/in/saurabh-kumar-b4334422a/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
 											</ul>
 											<ul class="copyright">
-												<!-- <li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-											</ul> -->
+												<li>&copy; saurabh</li>
+											</ul>
 										</div>
 									</footer>
 								</section>
